@@ -196,13 +196,9 @@ footer { padding: 40px 0 50px; color: var(--soft); font-size: 14px; }
   background: var(--cobalt); box-shadow: 0 0 0 6px color-mix(in srgb, var(--cobalt) 22%, transparent); }
 .job.lit::before { background: var(--cobalt); }
 .job::before { transition: background .3s; z-index: 1; }
+/* with "reduce motion" on, things still fade in gently but nothing slides */
 @media (prefers-reduced-motion: reduce) {
-  .js .rv, .js .fig .gx, .js .fig .gc, .js .fig .gy, .js .fig .gf { opacity: 1; transform: none; transition: none; }
-  .track b { display: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .curve, .fill, .ci, .result { animation: none; stroke-dashoffset: 0; opacity: 1; }
-  .caret { animation: none; }
+  .js .rv, .js .rv.from-left, .js .rv.from-right { transform: none; transition: opacity .6s ease; }
 }
 @media (max-width: 880px) {
   .top nav a { display: none; }
@@ -502,7 +498,7 @@ document.documentElement.classList.add("js");
 // typing role line
 const roles = ["Data Scientist", "ML Engineer", "Experimentation Analyst", "Research Analyst"];
 const el = document.getElementById("typed");
-if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+{
   let r = 0, i = roles[0].length, deleting = true;
   setTimeout(function tick() {
     el.textContent = roles[r].slice(0, i);
