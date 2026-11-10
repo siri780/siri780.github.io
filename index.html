@@ -3,246 +3,256 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Shirisha Gajendra · Data Scientist</title>
-<meta name="description" content="Shirisha Gajendra: Data Scientist. Experimentation, causal inference and machine learning. MS Data Science, Stony Brook University, May 2027.">
+<title>Shirisha Gajendra, Data Scientist</title>
+<meta name="description" content="Shirisha Gajendra is a data scientist working on experimentation, causal inference and machine learning. MS Data Science, Stony Brook University, May 2027.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #111015; --bg2: #16141c; --card: #1c1a24; --line: #2c2936;
-  --ink: #f3f0f7; --muted: #a39db0; --v1: #a78bfa; --v2: #f0abfc;
-  --grad: linear-gradient(90deg, var(--v1), var(--v2));
+  --paper: #f3f5f8; --panel: #ffffff; --ink: #14213d; --soft: #52607a; --rule: #d9dfe8;
+  --grid: rgba(20, 33, 61, .055);
+  --cobalt: #2f5bea; --slate: #9aa4b6; --marigold: #e8a33a; --pine: #2b8a6e; --brick: #c2513f;
+}
+:root[data-theme="dark"] {
+  --paper: #121826; --panel: #1a2232; --ink: #e9edf5; --soft: #a3aec2; --rule: #2b3548;
+  --grid: rgba(233, 237, 245, .05);
+  --cobalt: #7d9bff; --slate: #66728a; --marigold: #f0b75a; --pine: #4cc49c; --brick: #e57a68;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--ink); font: 16px/1.7 Inter, system-ui, sans-serif; overflow-x: hidden; }
-a { color: inherit; text-decoration: none; }
-.wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
-.grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+body { background: var(--paper); color: var(--ink); font: 17px/1.65 "IBM Plex Sans", system-ui, sans-serif;
+  transition: background .3s, color .3s; overflow-x: hidden; }
+a { color: inherit; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+h1, h2, h3 { font-family: "Bricolage Grotesque", sans-serif; letter-spacing: -.015em; }
+h2 { font-size: clamp(30px, 4vw, 44px); line-height: 1.1; font-weight: 800; margin-bottom: 14px; }
+.intro { color: var(--soft); max-width: 60ch; margin-bottom: 44px; }
+:focus-visible { outline: 3px solid var(--marigold); outline-offset: 3px; border-radius: 6px; }
 
-/* nav */
-nav { position: fixed; inset: 16px 0 auto; z-index: 10; display: flex; justify-content: center; pointer-events: none; }
-nav ul { pointer-events: auto; display: flex; gap: 4px; list-style: none; padding: 6px; border-radius: 999px;
-  background: rgba(28,26,36,.75); backdrop-filter: blur(12px); border: 1px solid var(--line); }
-nav a { display: block; padding: 7px 15px; border-radius: 999px; font-size: 14px; color: var(--muted); transition: all .2s; }
-nav a:hover, nav a.on { color: var(--ink); background: rgba(167,139,250,.14); }
+/* header */
+.top { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; }
+.mark { font: 800 21px "Bricolage Grotesque", sans-serif; text-decoration: none; }
+.top nav { display: flex; gap: 26px; align-items: center; font-size: 15px; }
+.top nav a { text-decoration: none; color: var(--soft); }
+.top nav a:hover { color: var(--ink); }
+.toggle { border: 1px solid var(--rule); background: var(--panel); color: var(--ink); width: 38px; height: 38px;
+  border-radius: 50%; display: grid; place-items: center; cursor: pointer; }
+.toggle svg { width: 18px; height: 18px; }
 
 /* hero */
-.hero { min-height: 100vh; display: grid; place-items: center; text-align: center; padding: 120px 0 80px; position: relative; overflow: hidden; isolation: isolate; }
-.hero::before { content: ""; position: absolute; width: 620px; height: 620px; border-radius: 50%; top: 50%; left: 50%;
-  transform: translate(-50%, -55%); background: radial-gradient(circle, rgba(167,139,250,.18), transparent 65%); z-index: -1; }
-.status { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--muted);
-  border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; margin-bottom: 28px; }
-.status i { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 10px #4ade80; }
-.hero h1 { font: 700 clamp(44px, 8vw, 84px)/1.05 "Playfair Display", serif; letter-spacing: -.01em; }
-.typeline { font-size: clamp(20px, 3vw, 28px); margin-top: 18px; color: var(--muted); min-height: 1.6em; }
-.typeline b { font-weight: 600; }
-.caret { display: inline-block; width: 2px; height: 1.05em; background: var(--v2); margin-left: 3px;
-  vertical-align: -0.15em; animation: blink 1s steps(1) infinite; }
+.hero { position: relative; padding: 46px 0 84px; }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: -1;
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 32px 32px; mask-image: linear-gradient(#000 60%, transparent); }
+.hero .wrap { display: grid; grid-template-columns: 1fr 1.05fr; gap: 56px; align-items: center; }
+.hero h1 { font-size: clamp(46px, 6.6vw, 82px); line-height: .98; font-weight: 800; }
+.role { font: 500 clamp(22px, 2.6vw, 30px)/1.3 "Bricolage Grotesque", sans-serif; margin-top: 18px; color: var(--soft); }
+.role span { color: var(--cobalt); font-weight: 700; border-bottom: 3px solid var(--marigold); }
+.caret { display: inline-block; width: 2px; height: 1em; background: var(--ink); margin-left: 2px; vertical-align: -0.12em;
+  animation: blink 1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
-.hero p { color: var(--muted); max-width: 580px; margin: 22px auto 34px; font-size: 17px; }
-.actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px;
-  font-weight: 600; font-size: 15px; transition: transform .2s, box-shadow .2s, border-color .2s; }
-.btn-grad { background: var(--grad); color: #1a1022; }
-.btn-grad:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(167,139,250,.35); }
-.btn-ghost { border: 1px solid var(--line); color: var(--ink); }
-.btn-ghost:hover { border-color: var(--v1); transform: translateY(-2px); }
-.scroll { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); color: var(--muted); font-size: 12px;
-  letter-spacing: .15em; text-transform: uppercase; }
-.scroll::after { content: ""; display: block; width: 1px; height: 34px; margin: 8px auto 0; background: var(--grad);
-  animation: drip 1.8s ease-in-out infinite; transform-origin: top; }
-@keyframes drip { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(0); transform-origin: bottom; } }
+.hero p { color: var(--soft); max-width: 46ch; margin: 22px 0 30px; }
+.btns { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 8px; font-weight: 600;
+  font-size: 15.5px; text-decoration: none; border: 2px solid var(--ink); transition: background .2s, color .2s; }
+.btn.solid { background: var(--ink); color: var(--paper); }
+.btn.solid:hover { background: var(--cobalt); border-color: var(--cobalt); }
+.btn.line:hover { background: var(--ink); color: var(--paper); }
 
-/* sections */
-section { padding: 100px 0; }
-.label { font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--v1); margin-bottom: 10px; }
-h2 { font: 700 clamp(32px, 4.5vw, 46px)/1.15 "Playfair Display", serif; margin-bottom: 44px; }
-h2 em { font-style: italic; }
+/* experiment readout */
+.readout { background: var(--panel); border: 1px solid var(--rule); border-radius: 14px; padding: 22px 22px 18px;
+  box-shadow: 0 30px 60px -30px rgba(20, 33, 61, .35); }
+.readout header { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+.readout h3 { font-size: 17px; font-weight: 700; }
+.readout .tag { font-size: 13px; color: var(--soft); }
+.readout svg { width: 100%; height: auto; display: block; }
+.readout .legend { display: flex; gap: 18px; font-size: 13.5px; color: var(--soft); margin-top: 6px; flex-wrap: wrap; }
+.readout .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.result { display: flex; align-items: baseline; gap: 14px; margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--rule); }
+.result b { font: 800 40px/1 "Bricolage Grotesque", sans-serif; color: var(--cobalt); }
+.result span { color: var(--soft); font-size: 14.5px; }
+.curve { stroke-dasharray: 900; stroke-dashoffset: 900; animation: draw 1.6s ease-out forwards; }
+.curve.t { animation-delay: .5s; }
+.fill { opacity: 0; animation: fade .8s ease-out forwards; animation-delay: 1.3s; }
+.fill.t { animation-delay: 1.6s; }
+.ci { opacity: 0; animation: fade .6s ease-out forwards; animation-delay: 2.1s; }
+.result { opacity: 0; animation: fade .6s ease-out forwards; animation-delay: 2.4s; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes fade { to { opacity: 1; } }
+
+.facts { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 18px 28px; margin-top: 36px; font-size: 15px; color: var(--soft); }
+.facts b { display: block; white-space: nowrap; color: var(--ink); font-size: 16px; }
+
+section { padding: 92px 0; }
+.band { background: var(--panel); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
 
 /* about */
-.about { display: grid; grid-template-columns: 220px 1fr; gap: 48px; align-items: start; }
-.avatar { width: 200px; height: 200px; border-radius: 50%; padding: 4px; background: var(--grad); }
-.avatar .in { width: 100%; height: 100%; border-radius: 50%; overflow: hidden; background: var(--card);
-  display: grid; place-items: center; position: relative; }
-.avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.avatar span { font: 700 56px "Playfair Display", serif; }
-.about p { color: var(--muted); margin-bottom: 16px; font-size: 16.5px; }
+.about { display: grid; grid-template-columns: 300px 1fr; gap: 64px; align-items: center; }
+.print { background: #fff; padding: 12px 12px 44px; border-radius: 4px; transform: rotate(-2.5deg);
+  box-shadow: 0 20px 40px -18px rgba(20, 33, 61, .45); position: relative; }
+.print .img { aspect-ratio: 4 / 5; background: #dfe5ee; overflow: hidden; display: grid; place-items: center; position: relative; }
+.print img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.print .initials { font: 800 72px "Bricolage Grotesque", sans-serif; color: #9aa4b6; }
+.print::after { content: ""; position: absolute; top: -12px; left: 50%; width: 96px; height: 26px; transform: translateX(-50%) rotate(3deg);
+  background: rgba(232, 163, 58, .55); }
+.about p { color: var(--soft); margin-bottom: 16px; max-width: 62ch; }
 .about p strong { color: var(--ink); font-weight: 600; }
-.numbers { display: flex; gap: 40px; margin-top: 28px; flex-wrap: wrap; }
-.numbers b { display: block; font: 700 38px/1 "Playfair Display", serif; }
-.numbers small { color: var(--muted); font-size: 13px; }
-.edu { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.edu div { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
-.edu b { display: block; }
-.edu small { color: var(--muted); font-size: 13.5px; }
+.schools { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 26px; }
+.schools div { border-left: 3px solid var(--cobalt); padding-left: 14px; }
+.schools b { display: block; font-size: 16px; }
+.schools small { color: var(--soft); font-size: 14px; }
 
-/* experience: single left timeline */
-.xp { position: relative; padding-left: 34px; }
-.xp::before { content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px; background: var(--grad); opacity: .5; }
-.x { position: relative; padding-bottom: 44px; }
-.x:last-child { padding-bottom: 0; }
-.x::before { content: ""; position: absolute; left: -34px; top: 7px; width: 14px; height: 14px; border-radius: 50%;
-  background: var(--bg); border: 3px solid var(--v1); }
-.x .meta { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-.x h3 { font-size: 19px; font-weight: 600; }
-.x .when { color: var(--v1); font-size: 14px; }
-.x .where { color: var(--muted); font-size: 14.5px; margin-bottom: 10px; }
-.x ul { list-style: none; color: var(--muted); }
-.x li { position: relative; padding-left: 18px; margin-bottom: 6px; font-size: 15px; }
-.x li::before { content: "—"; position: absolute; left: 0; color: var(--v2); }
+/* projects */
+.proj { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; padding: 48px 0; border-top: 1px solid var(--rule); }
+.proj:nth-of-type(even) .fig { order: 2; }
+.fig { background: var(--panel); border: 1px solid var(--rule); border-radius: 12px; padding: 22px; }
+.fig svg { width: 100%; height: auto; display: block; }
+.fig figcaption { font-size: 13.5px; color: var(--soft); margin-top: 10px; }
+.proj h3 { font-size: 26px; line-height: 1.2; font-weight: 700; margin-bottom: 10px; }
+.proj .headline { font-size: 18px; font-weight: 600; color: var(--cobalt); margin-bottom: 12px; }
+.proj p { color: var(--soft); margin-bottom: 16px; }
+.stack { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.stack span { font-size: 13.5px; padding: 4px 10px; border-radius: 999px; background: var(--paper); border: 1px solid var(--rule); }
+.more { font-weight: 600; text-decoration-color: var(--marigold); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.svg-text { font: 500 12px "IBM Plex Sans", sans-serif; fill: var(--soft); }
+.svg-strong { font: 700 13px "IBM Plex Sans", sans-serif; fill: var(--ink); }
 
-/* projects: alternating rows */
-.p { display: grid; grid-template-columns: 260px 1fr; gap: 36px; padding: 34px 0; border-top: 1px solid var(--line); align-items: start; }
-.p:last-child { border-bottom: 1px solid var(--line); }
-.p .big { font: 700 44px/1.05 "Playfair Display", serif; }
-.p .cap { color: var(--muted); font-size: 13.5px; margin-top: 8px; }
-.p h3 { font-size: 21px; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
-.p p { color: var(--muted); margin-bottom: 14px; font-size: 15.5px; }
-.p .stack { color: var(--v1); font-size: 13.5px; margin-bottom: 14px; }
-.p .go { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 14.5px; }
-.p .go svg { transition: transform .2s; }
-.p:hover .go svg { transform: translateX(4px); }
-.p:hover .big { filter: brightness(1.15); }
+/* experience */
+.jobs { border-left: 2px solid var(--rule); margin-left: 6px; }
+.job { position: relative; padding: 0 0 42px 34px; }
+.job:last-child { padding-bottom: 0; }
+.job::before { content: ""; position: absolute; left: -8px; top: 7px; width: 14px; height: 14px; border-radius: 50%;
+  background: var(--paper); border: 3px solid var(--cobalt); }
+.job .line1 { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.job h3 { font-size: 20px; font-weight: 700; }
+.job time { color: var(--soft); font-size: 15px; }
+.job .org { color: var(--cobalt); font-weight: 500; margin-bottom: 8px; }
+.job ul { padding-left: 20px; color: var(--soft); }
+.job li { margin-bottom: 5px; }
 
-/* skills: compact rows */
-.sk { display: grid; gap: 0; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
-.sk div { display: grid; grid-template-columns: 220px 1fr; gap: 20px; padding: 18px 24px; border-top: 1px solid var(--line); background: var(--bg2); }
-.sk div:first-child { border-top: 0; }
-.sk b { font-weight: 600; }
-.sk span { color: var(--muted); }
+/* skills */
+.skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.sk { background: var(--panel); border: 1px solid var(--rule); border-radius: 12px; padding: 22px; }
+.sk h3 { display: flex; align-items: center; gap: 12px; font-size: 18px; font-weight: 700; margin-bottom: 14px; }
+.sk h3 .ic { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; color: #fff; flex: none; }
+.sk h3 .ic svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips span { font-size: 14px; padding: 5px 11px; border-radius: 8px; background: var(--paper); border: 1px solid var(--rule);
+  transition: border-color .2s, color .2s; }
+.chips span:hover { border-color: var(--cobalt); color: var(--cobalt); }
 
 /* contact */
-.contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 28px; align-items: start; }
-.info { display: grid; gap: 14px; }
-.ci { display: flex; gap: 14px; align-items: center; background: var(--card); border: 1px solid var(--line);
-  border-radius: 14px; padding: 16px 18px; transition: border-color .2s, transform .2s; }
-a.ci:hover { border-color: var(--v1); transform: translateX(4px); }
-.ci .ico { width: 42px; height: 42px; flex: none; border-radius: 12px; background: var(--grad); color: #1a1022;
-  display: grid; place-items: center; }
-.ci b { display: block; font-size: 15px; }
-.ci small { color: var(--muted); font-size: 13.5px; overflow-wrap: anywhere; }
-.form { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 26px; display: grid; gap: 16px; }
-.form h3 { font: 700 22px "Playfair Display", serif; }
-.form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.form label { display: grid; gap: 6px; font-size: 13.5px; font-weight: 600; }
-.form input, .form textarea { font: 15px Inter, sans-serif; color: var(--ink); background: var(--bg); border: 1px solid var(--line);
-  border-radius: 10px; padding: 11px 13px; resize: vertical; transition: border-color .2s; }
-.form input:focus, .form textarea:focus { outline: none; border-color: var(--v1); }
-.form input::placeholder, .form textarea::placeholder { color: #6f6a7c; }
-.form .btn { justify-content: center; border: 0; cursor: pointer; font-family: Inter, sans-serif; }
-.form .note { color: var(--muted); font-size: 12.5px; text-align: center; }
-.contact { text-align: center; }
-.contact h2 { margin-bottom: 16px; }
-.contact p { color: var(--muted); margin-bottom: 30px; }
-.links { display: flex; justify-content: center; gap: 14px; margin-top: 22px; }
-.links a { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--line);
-  color: var(--muted); transition: all .2s; }
-.links a:hover { color: var(--ink); border-color: var(--v1); transform: translateY(-3px); }
-footer { text-align: center; color: var(--muted); font-size: 13px; padding: 40px 0; }
+.contact { display: grid; grid-template-columns: .9fr 1.1fr; gap: 36px; align-items: start; }
+.ways { display: grid; gap: 12px; }
+.way { display: flex; gap: 14px; align-items: center; background: var(--panel); border: 1px solid var(--rule); border-radius: 12px;
+  padding: 16px 18px; text-decoration: none; }
+a.way:hover { border-color: var(--cobalt); }
+.way .ic { width: 40px; height: 40px; border-radius: 10px; background: var(--ink); color: var(--paper); display: grid; place-items: center; flex: none; }
+.way .ic svg, .toggle svg { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.way .ic svg { width: 19px; height: 19px; }
+.way b { display: block; font-size: 15.5px; }
+.way small { color: var(--soft); font-size: 14px; overflow-wrap: anywhere; }
+form { background: var(--panel); border: 1px solid var(--rule); border-radius: 14px; padding: 26px; display: grid; gap: 16px; }
+form h3 { font-size: 22px; font-weight: 700; }
+form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+form label { display: grid; gap: 6px; font-size: 14px; font-weight: 600; }
+form input, form textarea { font: 16px "IBM Plex Sans", sans-serif; color: var(--ink); background: var(--paper); border: 1px solid var(--rule);
+  border-radius: 8px; padding: 11px 13px; resize: vertical; }
+form input:focus, form textarea:focus { outline: none; border-color: var(--cobalt); }
+form button { justify-self: start; cursor: pointer; font-family: inherit; }
+form small { color: var(--soft); font-size: 13.5px; }
+footer { padding: 40px 0 50px; color: var(--soft); font-size: 14px; }
 
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
-.reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; } .caret, .scroll::after { animation: none; }
+  .curve, .fill, .ci, .result { animation: none; stroke-dashoffset: 0; opacity: 1; }
+  .caret { animation: none; }
 }
-@media (max-width: 760px) {
-  nav ul { gap: 0; } nav a { padding: 7px 10px; font-size: 13px; }
-  nav li.hide { display: none; }
-  .about, .p, .sk div { grid-template-columns: 1fr; }
-  .about { gap: 28px; justify-items: start; }
-  .avatar { width: 140px; height: 140px; }
-  .edu, .contact-grid, .form .row { grid-template-columns: 1fr; }
-  .p { gap: 12px; }
-  .sk div { gap: 4px; }
+@media (max-width: 880px) {
+  .top nav a { display: none; }
+  .hero .wrap, .about, .proj, .contact { grid-template-columns: 1fr; }
+  .proj:nth-of-type(even) .fig { order: 0; }
+  .about { gap: 40px; }
+  .print { max-width: 240px; margin: 10px auto 0; }
+  .skills { grid-template-columns: 1fr; }
+  .facts { grid-template-columns: 1fr 1fr; }
+  .schools, form .row { grid-template-columns: 1fr; }
   .wrap { padding: 0 16px; }
-  section { padding: 76px 0; }
+  section { padding: 70px 0; }
+  .proj { gap: 24px; }
 }
 </style>
 </head>
 <body>
 
-<nav><ul>
-  <li><a href="#home">Home</a></li>
-  <li><a href="#about">About</a></li>
-  <li class="hide"><a href="#experience">Experience</a></li>
-  <li><a href="#projects">Projects</a></li>
-  <li class="hide"><a href="#skills">Skills</a></li>
-  <li><a href="#contact">Contact</a></li>
-</ul></nav>
+<div class="wrap top">
+  <a class="mark" href="#">Shirisha Gajendra</a>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+    <button class="toggle" id="theme" aria-label="Switch light or dark theme">
+      <svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </nav>
+</div>
 
-<header class="hero" id="home">
+<header class="hero">
   <div class="wrap">
-    <div class="status"><i></i>Open to Data Scientist roles · June 2027</div>
-    <h1>Shirisha Gajendra</h1>
-    <div class="typeline">I'm a <b class="grad" id="typed">Data Scientist</b><span class="caret"></span></div>
-    <p>I turn messy data into decisions people can trust, from A/B tests on millions of users
-      to causal models on real-world health records.</p>
-    <div class="actions">
-      <a class="btn btn-grad" href="#projects">See my work</a>
-      <a class="btn btn-ghost" href="resume.pdf" target="_blank" rel="noopener">Download resume</a>
+    <div>
+      <h1>Hi, I'm Shirisha.</h1>
+      <div class="role">I work as a <span id="typed">Data Scientist</span><i class="caret"></i></div>
+      <p>I design and read experiments, estimate causal effects from messy real-world data, and build models
+        that hold up against honest baselines.</p>
+      <div class="btns">
+        <a class="btn solid" href="#projects">See my projects</a>
+        <a class="btn line" href="resume.pdf" target="_blank" rel="noopener">Download resume</a>
+      </div>
+      <div class="facts">
+        <div><b>MS Data Science</b>Stony Brook</div>
+        <div><b>May 2027</b>Graduating</div>
+        <div><b>New York</b>Open to relocate</div>
+      </div>
+    </div>
+
+    <div class="readout" aria-label="Experiment result: treatment converts 59 percent more than control, 95 percent confidence interval 54 to 65 percent">
+      <header><h3>Ad experiment, 14M users</h3><span class="tag">Criteo uplift data</span></header>
+      <svg viewBox="0 0 460 210" role="img" aria-hidden="true">
+        <line x1="20" y1="180" x2="440" y2="180" stroke="var(--rule)" stroke-width="1.5"/>
+        <path class="fill" fill="var(--slate)" fill-opacity=".22" d="M20,180 C110,180 120,40 165,40 C210,40 220,180 310,180 Z"/>
+        <path class="fill t" fill="var(--cobalt)" fill-opacity=".18" d="M130,180 C220,180 230,30 275,30 C320,30 330,180 420,180 Z"/>
+        <path class="curve" fill="none" stroke="var(--slate)" stroke-width="3" d="M20,180 C110,180 120,40 165,40 C210,40 220,180 310,180"/>
+        <path class="curve t" fill="none" stroke="var(--cobalt)" stroke-width="3" d="M130,180 C220,180 230,30 275,30 C320,30 330,180 420,180"/>
+        <g class="ci">
+          <line x1="165" y1="22" x2="275" y2="22" stroke="var(--marigold)" stroke-width="2" stroke-dasharray="4 4"/>
+          <line x1="250" y1="12" x2="300" y2="12" stroke="var(--marigold)" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="275" cy="12" r="5" fill="var(--marigold)"/>
+          <text x="306" y="16" class="svg-text">95% CI</text>
+        </g>
+        <text x="20" y="200" class="svg-text">conversion rate</text>
+      </svg>
+      <div class="legend"><span><i style="background:var(--slate)"></i>Control</span><span><i style="background:var(--cobalt)"></i>Treatment (saw ads)</span></div>
+      <div class="result"><b>+59%</b><span>conversion lift, 95% CI 54–65%,<br>checked with an SRM test and a Bayesian model</span></div>
     </div>
   </div>
-  <div class="scroll">Scroll</div>
 </header>
 
-<section id="about">
-  <div class="wrap">
-    <div class="label reveal">About</div>
-    <h2 class="reveal">Rigor first, then <em class="grad">results</em>.</h2>
-    <div class="about">
-      <div class="avatar reveal"><div class="in"><span class="grad">SG</span>
-        <img src="photo.jpeg" alt="Shirisha Gajendra" onerror="if(!this.dataset.t){this.dataset.t=1;this.src='photo.jpg'}else{this.remove()}"></div></div>
-      <div class="reveal">
-        <p>I'm a Master's student in Data Science at <strong>Stony Brook University</strong>. I love the moment a
-          careful analysis changes a decision.</p>
-        <p>I've measured ad lift on <strong>14 million users</strong>, built causal models on national health records
-          as a research assistant, and fine-tuned language models that beat much larger ones. I check the
-          randomization, test the assumptions, and report honest uncertainty.</p>
-        <div class="numbers">
-          <div><b class="grad" data-count="14" data-suffix="M">14M</b><small>users analyzed</small></div>
-          <div><b class="grad" data-count="3">3</b><small>research projects</small></div>
-          <div><b class="grad" data-count="4">4</b><small>shipped projects</small></div>
-        </div>
-        <div class="edu">
-          <div><b>MS Data Science</b><small>Stony Brook University · 2025 – 2027</small></div>
-          <div><b>BE Computer Science (Data Science)</b><small>Sai Vidya Institute of Technology · 2021 – 2025</small></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="experience" style="background:var(--bg2)">
-  <div class="wrap">
-    <div class="label reveal">Experience</div>
-    <h2 class="reveal">Where I've <em class="grad">worked</em>.</h2>
-    <div class="xp">
-      <div class="x reveal">
-        <div class="meta"><h3>Research Assistant, Statistical Analysis</h3><span class="when">Jan 2026 – Present</span></div>
-        <div class="where">Stony Brook University · Division of Nephrology and Hypertension</div>
-        <ul>
-          <li>End-to-end analysis across 3 clinical research projects on EHR cohorts of tens of thousands of patients.</li>
-          <li>Causal inference (propensity score matching) and survival analysis (Cox, competing risks) in R.</li>
-          <li>Lead an independent cognition module for a national target-trial emulation in Python, backed by 29 automated tests.</li>
-        </ul>
-      </div>
-      <div class="x reveal">
-        <div class="meta"><h3>Data Analytics Intern</h3><span class="when">May – Aug 2024</span></div>
-        <div class="where">Rail Wheel Factory · Bengaluru, India</div>
-        <ul>
-          <li>Built Power BI dashboards tracking KPIs across 3 departments.</li>
-          <li>Automated SQL ETL pipelines that cut manual reporting work by 40%.</li>
-        </ul>
-      </div>
-      <div class="x reveal">
-        <div class="meta"><h3>Software Engineer Intern</h3><span class="when">Sep – Nov 2023</span></div>
-        <div class="where">QSpiders Global · Bengaluru, India</div>
-        <ul>
-          <li>Developed 2 Java applications with OOP and REST APIs in an Agile team using Git.</li>
-        </ul>
+<section class="band" id="about">
+  <div class="wrap about">
+    <div class="print"><div class="img"><span class="initials">SG</span>
+      <img src="photo.jpeg" alt="Portrait of Shirisha Gajendra" onerror="if(!this.dataset.t){this.dataset.t=1;this.src='photo.jpg'}else{this.remove()}"></div></div>
+    <div>
+      <h2>About me</h2>
+      <p>I'm finishing a Master's in Data Science at <strong>Stony Brook University</strong>. What I enjoy most is the
+        moment a careful analysis changes a decision, and the checking that makes it safe to trust.</p>
+      <p>As a research assistant in nephrology, I run real-world evidence studies end to end: building patient cohorts,
+        matching treatment groups and modeling survival. On my own, I've analyzed a 14-million-user ad experiment and
+        fine-tuned a small language model that beat a 7B one.</p>
+      <div class="schools">
+        <div><b>MS Data Science</b><small>Stony Brook University, 2025–2027</small></div>
+        <div><b>BE Computer Science (Data Science)</b><small>Sai Vidya Institute of Technology, 2021–2025</small></div>
       </div>
     </div>
   </div>
@@ -250,154 +260,241 @@ footer { text-align: center; color: var(--muted); font-size: 13px; padding: 40px
 
 <section id="projects">
   <div class="wrap">
-    <div class="label reveal">Projects</div>
-    <h2 class="reveal">Selected <em class="grad">work</em>.</h2>
-    <a class="p reveal" href="https://github.com/siri780/ab-test-criteo-uplift" target="_blank" rel="noopener">
-      <div><div class="big grad">+59%</div><div class="cap">conversion lift · 95% CI 54–65%</div></div>
+    <h2>Projects</h2>
+    <p class="intro">Each one answers a real question, with the result and the check that backs it.</p>
+
+    <article class="proj">
+      <figure class="fig">
+        <svg viewBox="0 0 440 190" role="img" aria-label="Confidence interval for the lift before and after CUPED: same estimate, narrower interval">
+          <text x="0" y="44" class="svg-strong">Standard estimate</text>
+          <line x1="150" y1="40" x2="430" y2="40" stroke="var(--rule)"/>
+          <line x1="203" y1="40" x2="377" y2="40" stroke="var(--slate)" stroke-width="10" stroke-linecap="round"/>
+          <circle cx="290" cy="40" r="8" fill="var(--ink)"/>
+          <text x="0" y="104" class="svg-strong">With CUPED</text>
+          <line x1="150" y1="100" x2="430" y2="100" stroke="var(--rule)"/>
+          <line x1="215" y1="100" x2="365" y2="100" stroke="var(--cobalt)" stroke-width="10" stroke-linecap="round"/>
+          <circle cx="290" cy="100" r="8" fill="var(--ink)"/>
+          <text x="150" y="150" class="svg-text">Same data, 25% less variance, so a tighter interval</text>
+          <text x="150" y="170" class="svg-text">and a faster decision.</text>
+        </svg>
+        <figcaption>CUPED uses pre-experiment behavior to remove noise from the estimate.</figcaption>
+      </figure>
       <div>
-        <h3>A/B Test Analysis of a 14M-User Ad Experiment</h3>
-        <p>Validated randomization with an SRM test, cut variance 25% with cross-fitted CUPED, confirmed the lift
-          with a Bayesian model, and showed a naive comparison overstated impact by a third.</p>
-        <div class="stack">Python · SQL (DuckDB) · statsmodels · Bayesian</div>
-        <span class="go">View on GitHub <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <h3>A/B test analysis of a 14M-user ad experiment</h3>
+        <div class="headline">+59% conversion lift (95% CI 54–65%)</div>
+        <p>I validated the randomization, cut variance 25% with cross-fitted CUPED and confirmed the lift with a
+          Bayesian model. Separating intent-to-treat from the effect on people who actually saw ads showed a naive
+          comparison overstated the impact by a third. It ends in a break-even decision memo.</p>
+        <div class="stack"><span>Python</span><span>SQL (DuckDB)</span><span>statsmodels</span><span>Bayesian inference</span></div>
+        <a class="more" href="https://github.com/siri780/ab-test-criteo-uplift" target="_blank" rel="noopener">Read the analysis on GitHub</a>
       </div>
-    </a>
-    <a class="p reveal" href="https://github.com/siri780/medical-text-router" target="_blank" rel="noopener">
-      <div><div class="big grad">0.657</div><div class="cap">macro-F1 · above the published 0.644</div></div>
+    </article>
+
+    <article class="proj">
+      <figure class="fig">
+        <svg viewBox="0 0 440 230" role="img" aria-label="Macro-F1 by model: TF-IDF 0.520, Qwen 7B zero-shot 0.572, fine-tuned PubMedBERT 0.657, router 0.660, oracle 0.72">
+          <g class="svg-text">
+            <text x="0" y="28">TF-IDF + logistic</text><text x="0" y="68">Qwen2.5-7B, zero-shot</text>
+            <text x="0" y="108">PubMedBERT + LoRA</text><text x="0" y="148">Router (both models)</text><text x="0" y="188">Oracle ceiling</text>
+          </g>
+          <rect x="150" y="14" width="161" height="20" rx="4" fill="var(--slate)"/>
+          <rect x="150" y="54" width="177" height="20" rx="4" fill="var(--slate)"/>
+          <rect x="150" y="94" width="203" height="20" rx="4" fill="var(--cobalt)"/>
+          <rect x="150" y="134" width="204" height="20" rx="4" fill="var(--cobalt)" fill-opacity=".55"/>
+          <rect x="150" y="174" width="223" height="20" rx="4" fill="none" stroke="var(--soft)" stroke-dasharray="4 3"/>
+          <g class="svg-strong"><text x="318" y="29">0.520</text><text x="334" y="69">0.572</text><text x="360" y="109">0.657</text>
+            <text x="361" y="149">0.660</text><text x="380" y="189">0.72</text></g>
+          <line x1="349" y1="6" x2="349" y2="204" stroke="var(--marigold)" stroke-width="2" stroke-dasharray="3 3"/>
+          <text x="300" y="222" class="svg-text">published baseline 0.644</text>
+        </svg>
+        <figcaption>Macro-F1 on held-out PubMed abstracts. The small fine-tuned model wins at a fraction of the compute.</figcaption>
+      </figure>
       <div>
-        <h3>Medical Text Router: Small vs. Large Model</h3>
-        <p>Fine-tuned PubMedBERT with LoRA (0.54% of weights) on 14K abstracts, beating a 7B LLM by 8.5 points
-          at about 1/90th of the compute, then tested routing and ensembling.</p>
-        <div class="stack">PyTorch · Hugging Face · LoRA · Qwen2.5-7B</div>
-        <span class="go">View on GitHub <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <h3>Medical text router: small vs. large model</h3>
+        <div class="headline">0.657 macro-F1, above the published 0.644</div>
+        <p>I fine-tuned PubMedBERT with LoRA, training only 0.54% of its weights on 14K abstracts. It beat a 7B language
+          model by 8.5 points at about 1/90th of the compute. Then I tested whether routing hard cases to the big model helps.</p>
+        <div class="stack"><span>PyTorch</span><span>Hugging Face</span><span>LoRA</span><span>Qwen2.5-7B</span></div>
+        <a class="more" href="https://github.com/siri780/medical-text-router" target="_blank" rel="noopener">See the code and results</a>
       </div>
-    </a>
-    <a class="p reveal" href="https://github.com/siri780/reviewguard" target="_blank" rel="noopener">
-      <div><div class="big grad">0.85 AUC</div><div class="cap">up from 0.77 with graph features</div></div>
+    </article>
+
+    <article class="proj">
+      <figure class="fig">
+        <svg viewBox="0 0 440 200" role="img" aria-label="AUC rises from 0.77 to 0.85 after adding reviewer graph features; fraud recall doubles">
+                    <line x1="0" y1="170" x2="440" y2="170" stroke="var(--rule)"/>
+          <rect x="40" y="68" width="90" height="102" rx="6" fill="var(--slate)"/>
+          <rect x="160" y="38" width="90" height="132" rx="6" fill="var(--cobalt)"/>
+          <text x="66" y="60" class="svg-strong">0.77</text><text x="186" y="30" class="svg-strong">0.85</text>
+          <text x="40" y="190" class="svg-text">Text only</text><text x="160" y="190" class="svg-text">+ graph</text>
+          <circle cx="310" cy="70" r="16" fill="var(--paper)" stroke="var(--brick)" stroke-width="3"/>
+          <circle cx="360" cy="50" r="12" fill="var(--paper)" stroke="var(--brick)" stroke-width="3"/>
+          <circle cx="380" cy="104" r="14" fill="var(--paper)" stroke="var(--brick)" stroke-width="3"/>
+          <circle cx="322" cy="128" r="10" fill="var(--paper)" stroke="var(--slate)" stroke-width="3"/>
+          <path d="M310 70 L360 50 L380 104 Z M310 70 L322 128" fill="none" stroke="var(--soft)" stroke-width="1.5"/>
+          <text x="290" y="168" class="svg-text">accounts linked by shared</text>
+          <text x="290" y="184" class="svg-text">behavior form a campaign</text>
+        </svg>
+        <figcaption>AUC, with bars starting at 0.5 (a coin flip). Who reviews together says more than what one review says.</figcaption>
+      </figure>
       <div>
-        <h3>ReviewGuard: Explainable Fake-Review Detection</h3>
-        <p>PySpark pipeline on 46K Yelp reviews with GraphFrames PageRank features. Doubled fraud recall,
-          flagged 548 suspected review campaigns and explained predictions with SHAP.</p>
-        <div class="stack">PySpark · Spark MLlib · GraphFrames · SHAP</div>
-        <span class="go">View on GitHub <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <h3>ReviewGuard: explainable fake-review detection</h3>
+        <div class="headline">AUC 0.77 → 0.85, fraud recall doubled</div>
+        <p>A PySpark pipeline on 46K Yelp reviews. Adding reviewer-graph features (degree, PageRank) made the biggest
+          difference. Connected components flagged 548 suspected review campaigns, and SHAP explains each prediction.</p>
+        <div class="stack"><span>PySpark</span><span>Spark MLlib</span><span>GraphFrames</span><span>SHAP</span></div>
+        <a class="more" href="https://github.com/siri780/reviewguard" target="_blank" rel="noopener">See the project</a>
       </div>
-    </a>
-    <a class="p reveal" href="https://github.com/siri780/resumefit" target="_blank" rel="noopener">
-      <div><div class="big grad">LLM + guard</div><div class="cap">tailoring that can't invent facts</div></div>
+    </article>
+
+    <article class="proj">
+      <figure class="fig">
+        <svg viewBox="0 0 440 180" role="img" aria-label="ResumeFit flow: new job, LLM rewrites resume, guard checks facts, one-page PDF; invented facts are blocked">
+          <g font-family="IBM Plex Sans" font-size="13" font-weight="600">
+            <rect x="0" y="40" width="88" height="46" rx="8" fill="var(--paper)" stroke="var(--rule)"/><text x="16" y="68" fill="var(--ink)">New job</text>
+            <rect x="116" y="40" width="96" height="46" rx="8" fill="var(--paper)" stroke="var(--rule)"/><text x="130" y="68" fill="var(--ink)">LLM rewrite</text>
+            <rect x="240" y="40" width="80" height="46" rx="8" fill="var(--ink)"/><text x="260" y="68" fill="var(--paper)">Guard</text>
+            <rect x="348" y="40" width="90" height="46" rx="8" fill="var(--paper)" stroke="var(--cobalt)" stroke-width="2"/><text x="364" y="68" fill="var(--cobalt)">1-page PDF</text>
+          </g>
+          <g stroke="var(--soft)" stroke-width="2" fill="none"><path d="M88 63h24M212 63h24M320 63h24"/></g>
+          <path d="M280 86 V128" stroke="var(--brick)" stroke-width="2" stroke-dasharray="4 3"/>
+          <rect x="212" y="128" width="136" height="38" rx="8" fill="none" stroke="var(--brick)" stroke-width="2"/>
+          <text x="226" y="152" class="svg-text" style="fill:var(--brick)">invented facts blocked</text>
+        </svg>
+        <figcaption>Every LLM edit is checked by rules before it reaches the resume.</figcaption>
+      </figure>
       <div>
-        <h3>ResumeFit: Real-Time LLM Resume Tailoring</h3>
-        <p>A tool I built and use every day. It tailors my resume with an LLM and runs every output through
-          rule-based checks that block invented facts and hidden prompt injection.</p>
-        <div class="stack">Python · OpenAI API · GitHub Actions · pytest</div>
-        <span class="go">About the project <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <h3>ResumeFit: LLM resume tailoring with a fact guard</h3>
+        <div class="headline">A tool I use every day in my own job search</div>
+        <p>It tailors my resume to a job with an LLM, then rule-based checks block any number, skill or claim that
+          isn't already true. It also screens job postings for hidden instructions aimed at AI tools.</p>
+        <div class="stack"><span>Python</span><span>OpenAI API</span><span>GitHub Actions</span><span>pytest</span></div>
+        <a class="more" href="https://github.com/siri780/resumefit" target="_blank" rel="noopener">About the project</a>
       </div>
-    </a>
+    </article>
   </div>
 </section>
 
-<section id="skills" style="background:var(--bg2)">
+<section class="band" id="experience">
   <div class="wrap">
-    <div class="label reveal">Skills</div>
-    <h2 class="reveal">What I <em class="grad">use</em>.</h2>
-    <div class="sk reveal">
-      <div><b>Languages</b><span>Python, SQL, R, Java, C++</span></div>
-      <div><b>Statistics &amp; experimentation</b><span>A/B testing, CUPED, power analysis, Bayesian inference, causal inference, survival analysis</span></div>
-      <div><b>Machine learning</b><span>scikit-learn, PyTorch, Hugging Face, LoRA, XGBoost, SHAP, LLMs</span></div>
-      <div><b>Data &amp; big data</b><span>pandas, PySpark, DuckDB, SQLite, MPI</span></div>
-      <div><b>Visualization</b><span>Power BI, Tableau, Matplotlib, Streamlit</span></div>
-      <div><b>Tools</b><span>Git, GitHub Actions, pytest, Jupyter, OpenAI API</span></div>
+    <h2>Experience</h2>
+    <p class="intro">Research, analytics and software work, most recent first.</p>
+    <div class="jobs">
+      <div class="job">
+        <div class="line1"><h3>Research Assistant, Statistical Analysis</h3><time>Jan 2026 – present</time></div>
+        <div class="org">Stony Brook University, Division of Nephrology and Hypertension</div>
+        <ul>
+          <li>Run end-to-end analysis across 3 clinical research projects on EHR cohorts of tens of thousands of patients.</li>
+          <li>Estimate treatment effects with propensity score matching, Cox models and competing risks in R.</li>
+          <li>Lead an independent cognition module for a national target-trial emulation in Python, with date-quality checks backed by 29 automated tests.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="line1"><h3>Data Analytics Intern</h3><time>May – Aug 2024</time></div>
+        <div class="org">Rail Wheel Factory, Bengaluru</div>
+        <ul>
+          <li>Built Power BI dashboards tracking KPIs across 3 departments.</li>
+          <li>Automated SQL ETL pipelines that cut manual reporting work by 40%.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="line1"><h3>Software Engineer Intern</h3><time>Sep – Nov 2023</time></div>
+        <div class="org">QSpiders Global, Bengaluru</div>
+        <ul><li>Developed 2 Java applications with OOP and REST APIs in an Agile team using Git.</li></ul>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="contact">
+<section id="skills">
   <div class="wrap">
-    <div class="label reveal">Contact</div>
-    <h2 class="reveal">Let's work <em class="grad">together</em>.</h2>
-    <p class="reveal" style="color:var(--muted);margin:-28px 0 40px;max-width:600px">Open to Data Scientist roles starting
-      June 2027. Have a role, a question or just want to say hi? Send me a message.</p>
-    <div class="contact-grid">
-      <div class="info reveal">
-        <a class="ci" href="mailto:gshirisha235@gmail.com">
-          <span class="ico"><svg class="i" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+    <h2>Skills</h2>
+    <p class="intro">The methods and tools I reach for, grouped by the job they do.</p>
+    <div class="skills">
+      <div class="sk"><h3><span class="ic" style="background:var(--cobalt)"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 3 5-6"/></svg></span>Experimentation</h3>
+        <div class="chips"><span>A/B testing</span><span>CUPED</span><span>Power analysis</span><span>SRM checks</span><span>Bayesian inference</span></div></div>
+      <div class="sk"><h3><span class="ic" style="background:var(--pine)"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M8.5 8.5l7 7"/></svg></span>Causal inference</h3>
+        <div class="chips"><span>Propensity scores</span><span>Instrumental variables</span><span>Target-trial emulation</span><span>Survival analysis</span></div></div>
+      <div class="sk"><h3><span class="ic" style="background:var(--marigold)"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9z"/></svg></span>Machine learning</h3>
+        <div class="chips"><span>scikit-learn</span><span>PyTorch</span><span>Hugging Face</span><span>LoRA</span><span>XGBoost</span><span>SHAP</span></div></div>
+      <div class="sk"><h3><span class="ic" style="background:var(--brick)"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span>Data</h3>
+        <div class="chips"><span>SQL</span><span>pandas</span><span>PySpark</span><span>DuckDB</span><span>MPI</span></div></div>
+      <div class="sk"><h3><span class="ic" style="background:var(--ink)"><svg viewBox="0 0 24 24"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg></span>Languages</h3>
+        <div class="chips"><span>Python</span><span>R</span><span>SQL</span><span>Java</span><span>C++</span></div></div>
+      <div class="sk"><h3><span class="ic" style="background:#7a5bd6"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M7 14v-3M12 14V8M17 14v-5"/></svg></span>Reporting &amp; tools</h3>
+        <div class="chips"><span>Power BI</span><span>Tableau</span><span>Matplotlib</span><span>Git</span><span>pytest</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="contact">
+  <div class="wrap">
+    <h2>Get in touch</h2>
+    <p class="intro">I'm looking for full-time data scientist roles starting June 2027. Questions about my work are welcome too.</p>
+    <div class="contact">
+      <div class="ways">
+        <a class="way" href="mailto:gshirisha235@gmail.com"><span class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
           <span><b>Email</b><small>gshirisha235@gmail.com</small></span></a>
-        <a class="ci" href="https://www.linkedin.com/in/shirisha-gajendra" target="_blank" rel="noopener">
-          <span class="ico"><svg class="i" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg></span>
-          <span><b>LinkedIn</b><small>in/shirisha-gajendra</small></span></a>
-        <a class="ci" href="https://github.com/siri780" target="_blank" rel="noopener">
-          <span class="ico"><svg class="i" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.4 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5 5 0 0 0 19.9 1S18.7.6 16 2.5a13.4 13.4 0 0 0-7 0C6.3.6 5.1 1 5.1 1A5 5 0 0 0 5 4.8a5.4 5.4 0 0 0-1.5 3.7c0 5.4 3.3 6.6 6.4 7a3.4 3.4 0 0 0-.9 2.6V22"/></svg></span>
+        <a class="way" href="https://www.linkedin.com/in/shirisha-gajendra" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg></span>
+          <span><b>LinkedIn</b><small>linkedin.com/in/shirisha-gajendra</small></span></a>
+        <a class="way" href="https://github.com/siri780" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.4 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5 5 0 0 0 19.9 1S18.7.6 16 2.5a13.4 13.4 0 0 0-7 0C6.3.6 5.1 1 5.1 1A5 5 0 0 0 5 4.8a5.4 5.4 0 0 0-1.5 3.7c0 5.4 3.3 6.6 6.4 7a3.4 3.4 0 0 0-.9 2.6V22"/></svg></span>
           <span><b>GitHub</b><small>github.com/siri780</small></span></a>
-        <div class="ci">
-          <span class="ico"><svg class="i" viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
-          <span><b>Location</b><small>New York · open to relocate</small></span></div>
+        <div class="way"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+          <span><b>Location</b><small>New York, open to relocate</small></span></div>
       </div>
-      <form class="form reveal" id="msg">
-        <h3>Send a message</h3>
+      <form id="msg">
+        <h3>Send me a message</h3>
         <div class="row">
-          <label>Full name<input name="name" required placeholder="Your name"></label>
-          <label>Email<input name="email" type="email" required placeholder="you@company.com"></label>
+          <label>Your name<input name="name" required autocomplete="name"></label>
+          <label>Your email<input name="email" type="email" required autocomplete="email"></label>
         </div>
-        <label>Subject<input name="subject" required placeholder="What's on your mind?"></label>
-        <label>Message<textarea name="message" rows="5" required placeholder="Write me a quick message"></textarea></label>
-        <button class="btn btn-grad" type="submit">Send message
-          <svg class="i" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg></button>
-        <small class="note">Opens your email app with the message filled in.</small>
+        <label>Subject<input name="subject" required></label>
+        <label>Message<textarea name="message" rows="5" required></textarea></label>
+        <button class="btn solid" type="submit">Send message</button>
+        <small>This opens your email app with the message ready to send.</small>
       </form>
     </div>
   </div>
 </section>
 
-<footer>© 2026 Shirisha Gajendra · New York</footer>
+<footer><div class="wrap">© 2026 Shirisha Gajendra</div></footer>
 
 <script>
+// theme: follows the device, with a toggle that's remembered when possible
+const root = document.documentElement;
+let saved = null;
+try { saved = localStorage.getItem("theme"); } catch (e) {}
+if (saved) root.dataset.theme = saved;
+else if (matchMedia("(prefers-color-scheme: dark)").matches) root.dataset.theme = "dark";
+document.getElementById("theme").addEventListener("click", () => {
+  root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
+  try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
+});
+
+// typing role line
 const roles = ["Data Scientist", "ML Engineer", "Experimentation Analyst", "Research Analyst"];
 const el = document.getElementById("typed");
-const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-if (!reduce) {
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
   let r = 0, i = roles[0].length, deleting = true;
   setTimeout(function tick() {
-    const word = roles[r];
-    el.textContent = word.slice(0, i);
-    let wait = deleting ? 45 : 95;
-    if (!deleting && i === word.length) { wait = 1800; deleting = true; }
-    else if (deleting && i === 0) { deleting = false; r = (r + 1) % roles.length; wait = 350; }
+    el.textContent = roles[r].slice(0, i);
+    let wait = deleting ? 45 : 90;
+    if (!deleting && i === roles[r].length) { wait = 1900; deleting = true; }
+    else if (deleting && i === 0) { deleting = false; r = (r + 1) % roles.length; wait = 300; }
     i += deleting ? -1 : 1;
     if (!deleting && i > roles[r].length) i = roles[r].length;
     setTimeout(tick, wait);
-  }, 1800);
+  }, 2600);
 }
-// contact form: open the visitor's email app with the message filled in
+
+// contact form opens the visitor's email app
 document.getElementById("msg").addEventListener("submit", (ev) => {
   ev.preventDefault();
   const f = new FormData(ev.target);
-  const body = `${f.get("message")}\n\n— ${f.get("name")} (${f.get("email")})`;
-  location.href = "mailto:gshirisha235@gmail.com?subject=" + encodeURIComponent(f.get("subject"))
-    + "&body=" + encodeURIComponent(body);
+  const body = f.get("message") + "\n\n" + f.get("name") + " (" + f.get("email") + ")";
+  location.href = "mailto:gshirisha235@gmail.com?subject=" + encodeURIComponent(f.get("subject")) +
+    "&body=" + encodeURIComponent(body);
 });
-// highlight the current section in the nav
-const links = [...document.querySelectorAll("nav a")];
-const spy = new IntersectionObserver((es) => es.forEach((e) => {
-  if (e.isIntersecting) links.forEach((a) => a.classList.toggle("on", a.getAttribute("href") === "#" + e.target.id));
-}), { rootMargin: "-45% 0px -50% 0px" });
-document.querySelectorAll("header[id], section[id]").forEach((s) => spy.observe(s));
-// reveal + count-up (numbers show their real value if scripts don't run)
-if (!reduce) document.querySelectorAll("[data-count]").forEach((n) => n.textContent = "0" + (n.dataset.suffix || ""));
-const io = new IntersectionObserver((entries) => entries.forEach((e) => {
-  if (!e.isIntersecting) return;
-  e.target.classList.add("in");
-  e.target.querySelectorAll("[data-count]").forEach((n) => {
-    const end = +n.dataset.count, suf = n.dataset.suffix || "";
-    if (reduce) { n.textContent = end + suf; return; }
-    const t0 = performance.now();
-    (function step(t) {
-      const p = Math.min(1, (t - t0) / 1200);
-      n.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))) + suf;
-      if (p < 1) requestAnimationFrame(step);
-    })(t0);
-  });
-  io.unobserve(e.target);
-}), { threshold: 0.15 });
-document.querySelectorAll(".reveal").forEach((n) => io.observe(n));
 </script>
 </body>
 </html>
