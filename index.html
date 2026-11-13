@@ -383,6 +383,34 @@ footer { padding: 40px 0 50px; color: var(--soft); font-size: 14px; }
 
     <article class="proj">
       <figure class="fig">
+        <svg viewBox="0 0 440 200" role="img" aria-label="HitRate at 10 by model: popularity 1.4%, item-kNN 11.0%, PureSVD 13.3%, EASE 13.5%">
+          <g class="svg-text">
+            <text x="0" y="28">Popularity</text><text x="0" y="68">Item-kNN</text>
+            <text x="0" y="108">PureSVD</text><text x="0" y="148">EASE</text>
+          </g>
+          <rect x="150" y="14" width="22" height="20" rx="4" fill="var(--slate)"/>
+          <rect x="150" y="54" width="176" height="20" rx="4" fill="var(--slate)"/>
+          <rect x="150" y="94" width="213" height="20" rx="4" fill="var(--slate)"/>
+          <rect x="150" y="134" width="216" height="20" rx="4" fill="var(--cobalt)"/>
+          <g class="svg-strong"><text x="180" y="29">1.4%</text><text x="334" y="69">11.0%</text>
+            <text x="371" y="109">13.3%</text><text x="374" y="149">13.5%</text></g>
+          <text x="150" y="186" class="svg-text">EASE and SVD are tied (bootstrap 95% CI includes 0)</text>
+        </svg>
+        <figcaption>HitRate@10: how often each user's next movie lands in their top 10, out of 3,706 movies.</figcaption>
+      </figure>
+      <div>
+        <h3>Movie recommender: four models, one honest test</h3>
+        <div class="headline">HitRate@10 1.4% → 13.5%, 9x the popularity baseline</div>
+        <p>On 1M MovieLens ratings, I hid each user's most recent movie and asked four models to find it in their top 10.
+          EASE, a closed-form linear model, matched matrix factorization and recommended from 47% of the catalog,
+          where popularity used under 1%.</p>
+        <div class="stack"><span>Python</span><span>NumPy</span><span>SciPy</span><span>Matrix factorization</span></div>
+        <a class="more" href="https://github.com/siri780/movielens-recommender" target="_blank" rel="noopener">See the code and results</a>
+      </div>
+    </article>
+
+    <article class="proj">
+      <figure class="fig">
         <svg viewBox="0 0 440 180" role="img" aria-label="ResumeFit flow: new job, LLM rewrites resume, guard checks facts, one-page PDF; invented facts are blocked">
           <g font-family="IBM Plex Sans" font-size="13" font-weight="600">
             <rect x="0" y="40" width="88" height="46" rx="8" fill="var(--paper)" stroke="var(--rule)"/><text x="16" y="68" fill="var(--ink)">New job</text>
