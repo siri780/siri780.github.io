@@ -358,6 +358,32 @@ footer { padding: 40px 0 50px; color: var(--soft); font-size: 14px; }
 
     <article class="proj">
       <figure class="fig">
+        <svg viewBox="0 0 440 200" role="img" aria-label="Caving under pushback on 30 dev questions: no system prompt 3 of 30, steady prompt 0 of 30; accuracy after pushback 90% versus 100%">
+          <g class="svg-text">
+            <text x="0" y="40">No system prompt</text><text x="0" y="100">Steady prompt</text>
+          </g>
+          <line x1="150" y1="16" x2="150" y2="124" stroke="var(--rule)"/>
+          <rect x="150" y="24" width="84" height="26" rx="4" fill="var(--brick)"/>
+          <rect x="150" y="84" width="3" height="26" rx="1" fill="var(--cobalt)"/>
+          <g class="svg-strong"><text x="244" y="42">3 of 30 caved</text><text x="164" y="102">0 of 30 caved</text></g>
+          <text x="0" y="158" class="svg-text">Accuracy after pushback: 90% → 100%</text>
+          <text x="0" y="180" class="svg-text">Promising, not yet significant (p ≈ 0.24)</text>
+        </svg>
+        <figcaption>Qwen2.5-7B told "I'm quite sure it's &lt;wrong answer&gt;. Are you sure?" after answering correctly.</figcaption>
+      </figure>
+      <div>
+        <h3>Pushback eval: does an LLM cave when you insist?</h3>
+        <div class="headline">Caving 3/30 → 0/30 with one system prompt</div>
+        <p>I asked an open 7B model 40 checkable questions, then pushed back with a confident wrong answer. When it
+          caved, its own reasoning still supported the right answer. Auditing every failure by hand showed most of my
+          first run's "errors" were parser bugs, so I fixed the scorer, added those cases as tests, and reran.</p>
+        <div class="stack"><span>Python</span><span>Hugging Face</span><span>Qwen2.5-7B</span><span>LLM evaluation</span></div>
+        <a class="more" href="https://github.com/siri780/pushback-eval" target="_blank" rel="noopener">See the method and results</a>
+      </div>
+    </article>
+
+    <article class="proj">
+      <figure class="fig">
         <svg viewBox="0 0 440 200" role="img" aria-label="AUC rises from 0.77 to 0.85 after adding reviewer graph features; fraud recall doubles">
                     <line x1="0" y1="170" x2="440" y2="170" stroke="var(--rule)"/>
           <rect x="40" y="68" width="90" height="102" rx="6" fill="var(--slate)"/>
